@@ -142,13 +142,17 @@ void FolderInfo::ReadFromFile(QDataStream &s)
 
     int sz;
     s>>sz;
-    sub_folders_.resize(sz);
 
-    //subfolders
-    for(int i = 0; i < sub_folders_.size(); i++)
+    if(sz > 0)
     {
-        sub_folders_[i] = new FolderInfo();
-        sub_folders_[i]->ReadFromFile(s);
+        sub_folders_.resize(sz);
+
+        //subfolders
+        for(int i = 0; i < sub_folders_.size(); i++)
+        {
+            sub_folders_[i] = new FolderInfo();
+            sub_folders_[i]->ReadFromFile(s);
+        }
     }
 }
 

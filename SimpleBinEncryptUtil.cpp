@@ -81,6 +81,7 @@ void SimpleBinEncryptUtil::Encrypt(const char* in_buf, char* out_buf, int len, s
         out_buf[i + len] = pad_rand[i];
     }
 
+    free(tmp_in_buf);
     free(rand_num);
     free(pad_rand);
 }
@@ -121,6 +122,7 @@ void SimpleBinEncryptUtil::Decrypt(const char* in_buf, char* out_buf, int len, s
         out_buf[i + len] = pad_rand[i];
     }
 
+    free(tmp_in_buf);
     if(rand_num) free(rand_num);
     if(pad_rand) free(pad_rand);
 }

@@ -17,6 +17,7 @@ struct TreeFile
 
 class FileTree
 {
+    //some variables to be make private in the future
 public:
     FileTree();
 
@@ -33,15 +34,21 @@ public:
 
 //    void Read();
     void Update();
-    void Extract();
 
     FolderInfo* info_;
     QVector<FileTree*> subfolders_;
     QVector<TreeFile> files_;
 
     void WriteToFile(QDataStream& s);
+    void ReadFromFileInit(QDataStream& s);
+    void Extract();
+    void SetRoot(QString root);
 
     int depth_;//the root depth = 1
+
+private:
+
+    void ReadFromFile(QDataStream& s, FolderInfo *info);
 };
 
 #endif // FILETREE_H

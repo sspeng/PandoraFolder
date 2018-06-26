@@ -19,6 +19,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void ReadFromFile(QString path);
+
 private:
     Ui::MainWindow *ui;
 
@@ -32,6 +34,9 @@ private slots:
     void ClearProject();//clear the directory on the disk
 
     void ExtractProject();
+
+    void ReadProject();
+
 };
 
 #endif // MAINWINDOW_H

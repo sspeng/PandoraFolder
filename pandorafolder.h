@@ -24,11 +24,11 @@ public:
     bool built_ = false;
     QString passwd_;
 
-    FolderInfo info_;
+    FolderInfo* info_;
     QString pdlx_path_;//changed in WriteToFile;
     FileTree ftree_;
 
-    void WriteToFile(QString fpath);
+    void WriteToFile(QString fpath, QString folder_name);
     void ReadFromFile();//app startup
 
     SimpleBinEncryptUtil enc_;

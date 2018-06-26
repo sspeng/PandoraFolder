@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>FA♂Q</string>
+     <string>clear</string>
     </property>
    </widget>
    <widget class="QPushButton" name="extract_project_btn">
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Leatherman</string>
+     <string>extract</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="folder_name_le">
@@ -60,20 +60,33 @@
      </rect>
     </property>
     <property name="text">
-     <string>广东老乡</string>
+     <string>build</string>
     </property>
    </widget>
    <widget class="QPushButton" name="select_dir_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>230</x>
       <y>70</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>That's good</string>
+     <string>select dir</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="read_pdlx_btn">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>70</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>select pdlx</string>
     </property>
    </widget>
   </widget>

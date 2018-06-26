@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->build_project_btn, SIGNAL(clicked(bool)), this, SLOT(BuildProject()));
     connect(ui->clear_project_btn, SIGNAL(clicked(bool)), this, SLOT(ClearProject()));
     connect(ui->extract_project_btn, SIGNAL(clicked(bool)), this, SLOT(ExtractProject()));
+    connect(ui->read_pdlx_btn, SIGNAL(clicked(bool)), this, SLOT(ReadProject()));
 }
 
 MainWindow::~MainWindow()
@@ -23,6 +24,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::SelectPath()
 {
+    if(pandora_.built_)
+        return;
+
     QString dir_path = QFileDialog::getExistingDirectory();
     qDebug()<<dir_path;
 
@@ -61,4 +65,36 @@ void MainWindow::ExtractProject()
 {
     if(pandora_.built_)
         pandora_.ExtractProject();
+}
+
+void MainWindow::ReadFromFile(QString path)
+{
+    //check the fileinfo
+    QFileInfo info(path);
+    if(!info.isFile())
+        return;
+
+    QDir::setCurrent(info.absolutePath());
+
+    pandora_.pdlx_path_ = path;
+    pandora_.ReadFromFile();
+}
+
+void MainWindow::ReadProject()
+{
+    if(pandora_.built_)
+        return;
+
+    QString path=QFileDialog::getOpenFileName(this,"select pdlx file",".","pandora folder project file(*.pdlx)");
+    qDebug()<<path;
+
+    QFileInfo info(path);
+    if(info.isFile())
+    {
+        //accept this!
+        ui->folder_name_le->setText(path);
+
+        pandora_.pdlx_path_ = path;
+        pandora_.ReadFromFile();
+    }
 }
