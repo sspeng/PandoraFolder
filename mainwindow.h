@@ -6,6 +6,12 @@
 #include <QDebug>
 #include "folderdiff.h"
 #include "pandorafolder.h"
+#include <QMessageBox>
+
+#include "logger.h"
+#include <QLineEdit>
+
+#include <QDialog>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +32,13 @@ private:
 
     PandoraFolder pandora_;
 
+    Logger* logger_;
+
+    void EnterPasswd();
+    QDialog* passwd_dialog_;
+    QLineEdit* passwd_le_;
+    QPushButton* finish_passwd_btn_;
+
 private slots:
     void SelectPath();
 
@@ -36,6 +49,10 @@ private slots:
     void ExtractProject();
 
     void ReadProject();
+
+    void PasswdChanged();
+
+    void WrongPasswd();
 
 };
 

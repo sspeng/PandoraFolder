@@ -6,12 +6,14 @@
 #include "filetree.h"
 #include <QDataStream>
 #include "SimpleBinEncryptUtil.h"
+#include <QMessageBox>
 
 using namespace std;
 
 
-class PandoraFolder
+class PandoraFolder : public QObject
 {
+    Q_OBJECT
 public:
     PandoraFolder();
 
@@ -32,6 +34,9 @@ public:
     void ReadFromFile();//app startup
 
     SimpleBinEncryptUtil enc_;
+
+signals:
+    void WrongPasswd();
 };
 
 extern const QString ddf_oracle;

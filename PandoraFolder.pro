@@ -41,3 +41,10 @@ HEADERS  += mainwindow.h \
     SimpleBinEncryptUtil.h
 
 FORMS    += mainwindow.ui
+
+RC_FILE= pandorafolder_resource.rc
+
+RC_ICONS = pandorafolder.ico
+
+DISTFILES += \
+    pandorafolder_resource.rc

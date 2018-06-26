@@ -32,7 +32,7 @@ inline bool DeleteFileOrFolder( const QString& strPath )
 
 PandoraFolder::PandoraFolder()
 {
-    passwd_ = "yooooooo!";
+    //passwd_ = "yooooooo!";
 }
 
 void PandoraFolder::BuildProject(QString folder_path)
@@ -63,7 +63,32 @@ void PandoraFolder::BuildProject(QString folder_path)
 //from disk to ram, update the info in the ram
 void PandoraFolder::UpdateProject()
 {
+    qDebug()<<"void PandoraFolder::UpdateProject()";
 
+    QFileInfo check_dir(ftree_.root_path_);
+    if(check_dir.isDir())
+    {
+        GetLoggerPtr()->PushLog("Dir = " + ftree_.root_path_ + "Begin update the project in the RAM");
+    }
+    else
+    {
+        GetLoggerPtr()->PushLog("Dir not found!");
+        return;
+    }
+
+    //parse the folder
+    FolderInfo* new_info = new FolderInfo("", "", ftree_.root_path_, 1);
+    new_info->Parse();
+
+    //compare the diff
+    FolderDiff* diff = new FolderDiff(ftree_.info_, new_info);
+
+    diff->Parse();
+
+    ftree_ = FileTree();
+    ftree_.Initial(new_info);
+
+    //update the ftree_ according to the diff
 }
 
 void PandoraFolder::ClearProject()
@@ -165,7 +190,8 @@ void PandoraFolder::ReadFromFile()
         }
         else
         {
-            qDebug()<<"Wrong passwd!!!";
+            //qDebug()<<"Wrong passwd!!!";
+            emit WrongPasswd();
         }
 
         f.close();

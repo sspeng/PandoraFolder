@@ -80,7 +80,7 @@ void FileTree::Initial(FolderInfo *info)
     root_path_ = info->root_path_;
     rela_path_ = info->relative_path_;
 
-    qDebug()<<"Initial, root_path = "<<root_path_<<", rela_path = "<<rela_path_;
+    //qDebug()<<"Initial, root_path = "<<root_path_<<", rela_path = "<<rela_path_;
 
     info_ = info;
 
@@ -170,11 +170,11 @@ void FileTree::ReadFromFile(QDataStream &s, FolderInfo* info)
 
     if(depth_ == 1)
     {
-        qDebug()<<"read info depth_ = 1";
+        //qDebug()<<"read info depth_ = 1";
         //read the fileinfo
         info_ = new FolderInfo();
         s>>*info_;
-        qDebug()<<"read info depth_ = 1 finished";
+        //qDebug()<<"read info depth_ = 1 finished";
     }
     else
     {
@@ -185,13 +185,13 @@ void FileTree::ReadFromFile(QDataStream &s, FolderInfo* info)
 
     s>>files_;
 
-    qDebug()<<"rela = "<<rela_path_<<", total files = "<<files_.size();
+    //qDebug()<<"rela = "<<rela_path_<<", total files = "<<files_.size();
 
     //read subfolders
     int sz;
     s>>sz;
 
-    qDebug()<<"sub cnt = "<<sz;
+    //qDebug()<<"sub cnt = "<<sz;
 
     if(sz > 0)
     {
@@ -209,7 +209,7 @@ void FileTree::ReadFromFile(QDataStream &s, FolderInfo* info)
 
 void FileTree::Extract()
 {
-    qDebug()<<"extracting "<<root_path_ + "/" + rela_path_;
+    //qDebug()<<"extracting "<<root_path_ + "/" + rela_path_;
     //if the dir exists, just quit it
     if(QFileInfo(root_path_ + "/" + rela_path_).exists())
     {
@@ -228,6 +228,9 @@ void FileTree::Extract()
         {
             f.write(files_[i].data);
             f.close();
+
+            //modify the time
+            modifyLastModifyTime(info_->files_[i].modify_time, root_path_ + "/" + rela_path_ + "/" + files_[i].name);
         }
     }
 

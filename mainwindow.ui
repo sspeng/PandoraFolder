@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="clear_project_btn">
@@ -87,6 +90,35 @@
     </property>
     <property name="text">
      <string>select pdlx</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwd_le">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>100</y>
+      <width>221</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>passwd</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="log_pte">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>300</y>
+      <width>321</width>
+      <height>191</height>
+     </rect>
     </property>
    </widget>
   </widget>
